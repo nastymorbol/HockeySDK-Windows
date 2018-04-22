@@ -36,8 +36,12 @@
     <Compile Include="..\Kit.Core45\Properties\AssemblyInfo.cs">
       <Link>Properties\AssemblyInfo.cs</Link>
     </Compile>
+    <Compile Include="..\Kit.WPF\IUpdateManager.cs">
+      <Link>IUpdateManager.cs</Link>
+    </Compile>
     <Compile Include="DictionarySettings.cs" />
     <Compile Include="Extensibility\PEImageReader.cs" />
+    <Compile Include="Gui\UpdateWindow.cs" />
     <Compile Include="Services\ApplicationService.cs" />
     <Compile Include="Services\Device\DeviceService.cs" />
     <Compile Include="Services\Device\ChassisType.cs" />
@@ -51,6 +55,7 @@
     <Compile Include="Constants.cs" />
     <Compile Include="HockeyClientWinFormsExtensions.cs" />
     <Compile Include="HockeyPlatformHelperWinForms.cs" />
+    <Compile Include="UpdateManager.cs" />
     <Compile Include="_NamespaceDoc.cs" />
   </ItemGroup>
   <ItemGroup>

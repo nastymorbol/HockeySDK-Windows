@@ -12,6 +12,20 @@ namespace Microsoft.HockeyApp
     /// </summary>
     public static class HockeyClientWinFormsExtensions
     {
+        private static IUpdateManager _updateManager = null;
+
+        public static IUpdateManager UpdateManager
+        {
+            get
+            {
+                if (_updateManager == null)
+                {
+                    _updateManager = new UpdateManager();
+                }
+                return _updateManager;
+            }
+        }
+
         /// <summary>
         /// Configures HockeyClient.
         /// </summary>
@@ -131,5 +145,26 @@ namespace Microsoft.HockeyApp
             bool result = await @this.AsInternal().SendCrashesAndDeleteAfterwardsAsync().ConfigureAwait(false);
             return result;
         }
+
+        #region Update
+
+#pragma warning disable 612, 618
+        /// <summary>
+        /// Check for available updates asynchronously.
+        /// </summary>
+        /// <param name="this">The this.</param>
+        /// <param name="autoShowUi">Use the default update dialogs</param>
+        /// <param name="shutdownActions">Callback to gracefully stop your application. If using default-ui, call has to be provided.</param>
+        /// <param name="updateAvailableAction">Callback for available versions, if you want to provide own update dialogs</param>
+        /// <returns></returns>
+        public static async Task<bool> CheckForUpdatesAsync(this IHockeyClient @this, bool autoShowUi, Func<bool> shutdownActions = null, Action<IAppVersion> updateAvailableAction = null)
+        {
+            @this.AsInternal().CheckForInitialization();
+            return await UpdateManager.CheckForUpdatesAsync(autoShowUi, shutdownActions, updateAvailableAction);
+        }
+#pragma warning restore 612, 618
+
+        #endregion
+
     }
 }
