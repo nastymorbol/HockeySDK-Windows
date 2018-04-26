@@ -165,3 +165,6 @@ $RECYCLE.BIN/
 Web/PerformanceTests_Instrumented/
 .PreReleaseVersion
 /Src/!.bat
+*.ide-wal
+*.ide
+*.ide-shm
