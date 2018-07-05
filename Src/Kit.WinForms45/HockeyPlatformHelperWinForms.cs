@@ -220,9 +220,12 @@ namespace Microsoft.HockeyApp
                     try
                     {
                         var type = Type.GetType("System.Deployment.Application.ApplicationDeployment");
-                        object deployment = type.GetMethod("CurrentDeployment").Invoke(null, null);
-                        Version version = type.GetMethod("CurrentVersion").Invoke(deployment, null) as Version;
-                        _appVersion = version.ToString();
+                        if (type != null)
+                        {
+                            object deployment = type.GetMethod("CurrentDeployment").Invoke(null, null);
+                            Version version = type.GetMethod("CurrentVersion").Invoke(deployment, null) as Version;
+                            _appVersion = version.ToString();
+                        }
                     }
                     catch (Exception) { }
                     //entry Assembly
